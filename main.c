@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "buffer.h"
 #include "searchdata.h"
+#include "frequency.h"
 
 #define WAV_FILE "Kanye West - Cant Tell Me Nothing.wav"
 
@@ -25,6 +26,14 @@ int main(void) {
     printf("  WAV file size : %ld bytes\n", wav.size);
     printf("  Audio data at : byte %ld\n", dc.offset);
     printf("  Audio size    : %u bytes\n", dc.size);
+
+    printf("\n[ Step 2 ] Counting the byte frequencies...\n");
+    unsigned char *audioData = wav.data + dc.offset;
+    long audioSize = (long)dc.size;
+
+    FreqTable freq;
+    buildFrequencyTable(audioData, audioSize, freq);
+    printf(" Frequency table build successfully. \n");
 
     freeFileBuffer(&wav);
     return 0;
