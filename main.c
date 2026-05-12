@@ -4,10 +4,11 @@
 #include "searchdata.h"
 #include "frequency.h"
 #include "huffman_tree.h"
+#include "code_table.h"
 
 #define WAV_FILE "Kanye West - Cant Tell Me Nothing.wav"
 
-// gcc -Wall -o huffman main.c buffer.c searchdata.c
+// gcc -Wall -o huffman main.c buffer.c searchdata.c frequency.c huffman_tree.c code_table.c
 
 int main(void) {
     printf("[ Step 1 ] Reading WAV file: %s\n", WAV_FILE);
@@ -47,6 +48,25 @@ int main(void) {
     }
 
     printf(" Huffman tree built successfully.\n");
+
+    printf("\n[ Step 4 ] Generating Huffman codes...\n");
+
+    CodeTable table;
+    buildCodeTable(root, table);
+    
+    printf(" Huffman code table generated successfully.\n");
+
+
+    printf("\nSample's:\n");
+
+    for (int i = 0; i < 10; i++) {
+    if (table[i].length > 0) {
+        printf("Byte %3d : %s (%d bits)\n",
+               i,
+               table[i].code,
+               table[i].length);
+    }
+}
 
     freeHuffmanTree(root);
 
