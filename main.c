@@ -3,6 +3,7 @@
 #include "buffer.h"
 #include "searchdata.h"
 #include "frequency.h"
+#include "huffman_tree.h"
 
 #define WAV_FILE "Kanye West - Cant Tell Me Nothing.wav"
 
@@ -34,6 +35,20 @@ int main(void) {
     FreqTable freq;
     buildFrequencyTable(audioData, audioSize, freq);
     printf(" Frequency table build successfully. \n");
+
+    printf("\n[ Step 3 ] Building Huffman tree...\n");
+
+    HuffNode *root = buildHuffmanTree(freq);
+
+    if (!root) {
+        fprintf(stderr, "Failed to build Huffman tree. Exiting.\n");
+        freeFileBuffer(&wav);
+        return 1;
+    }
+
+    printf(" Huffman tree built successfully.\n");
+
+    freeHuffmanTree(root);
 
     freeFileBuffer(&wav);
     return 0;
