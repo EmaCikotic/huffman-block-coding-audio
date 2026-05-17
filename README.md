@@ -132,7 +132,7 @@ Huffman tree built successfully.
 ---
 
 
-# Author
+# Authors
 
 Created by:
 
