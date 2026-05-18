@@ -111,7 +111,7 @@ long encodeToFile(const FileBuffer *fb, const CodeTable table,
     fclose(out);
 
     printf("Encoding done.\n");
-    printf("  Output file size: %ld bytes\n\n", outputSize);
+    
 
     return outputSize;
 }

@@ -45,7 +45,7 @@ int main(void) {
 
     FreqTable freq;
     buildFrequencyTable(audioData, audioSize, freq);
-    printf(" Frequency table build successfully. \n");
+    printf("Frequency table built successfully. \n");
 
     printf("\n[ Step 3 ] Building Huffman tree...\n");
 
@@ -67,7 +67,7 @@ int main(void) {
     printf(" Huffman code table generated successfully.\n");
 
 
-    printf("\nSample's:\n");
+    printf("\nExample Huffman codes:\n");
 
     for (int i = 0; i < 10; i++) {
     if (table[i].length > 0) {
